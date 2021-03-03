@@ -105,15 +105,42 @@ class AltDateWidget extends Component {
   get dateElementProps() {
     const { time, options } = this.props;
     const { year, month, day, hour, minute, second } = this.state;
-    const data = [
-      {
-        type: "year",
-        range: options.yearsRange,
-        value: year,
-      },
-      { type: "month", range: [1, 12], value: month },
-      { type: "day", range: [1, 31], value: day },
-    ];
+    let data;
+    switch (options.format) {
+      case "MDY":
+        data = [
+          { type: "month", range: [1, 12], value: month },
+          { type: "day", range: [1, 31], value: day },
+          {
+            type: "year",
+            range: options.yearsRange,
+            value: year,
+          },
+        ];
+        break;
+      case "DMY":
+        data = [
+          { type: "day", range: [1, 31], value: day },
+          { type: "month", range: [1, 12], value: month },
+          {
+            type: "year",
+            range: options.yearsRange,
+            value: year,
+          },
+        ];
+        break;
+      case "YMD":
+      default:
+        data = [
+          {
+            type: "year",
+            range: options.yearsRange,
+            value: year,
+          },
+          { type: "month", range: [1, 12], value: month },
+          { type: "day", range: [1, 31], value: day },
+        ];
+    }
     if (time) {
       data.push(
         { type: "hour", range: [0, 23], value: hour },

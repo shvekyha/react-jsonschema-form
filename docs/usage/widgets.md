@@ -64,7 +64,7 @@ Please note that, even though they are standardized, `datetime-local` and `date`
 
 ![](https://i.imgur.com/VF5tY60.png)
 
-You can customize the list of years displayed in the `year` dropdown by providing a ``yearsRange`` property to ``ui:options`` in your uiSchema. Its also possible to remove the `Now` and `Clear` buttons with the `hideNowButton` and `hideClearButton` options.
+You can customize the list of years displayed in the `year` dropdown by providing a ``yearsRange`` property to ``ui:options`` in your uiSchema. Its also possible to remove the `Now` and `Clear` buttons with the `hideNowButton` and `hideClearButton` options. Also, you can provide a ``format`` property for controlling the order of display (D for day, M for month, Y for year), default is 'YMD'.
 
 ```jsx
 const schema = {
@@ -77,6 +77,7 @@ const uiSchema = {
     yearsRange: [1980, 2030],
     hideNowButton: true,
     hideClearButton: true,
+    format: 'DMY'
   }
 };
 
